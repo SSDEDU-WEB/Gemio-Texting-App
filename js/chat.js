@@ -12,22 +12,22 @@ document.getElementById("logout").addEventListener("click", () => {
     });
 });
 
-// Send message functionality (add more as needed)
+// Send message functionality
 document.getElementById("send-message-btn").addEventListener("click", () => {
   const message = document.getElementById("message-input").value;
   if (message.trim()) {
-    // Add message to Firebase Database (you can use Firebase Realtime Database or Firestore)
+    // Add message to Firebase
     const messageRef = db.ref("messages").push();
     messageRef.set({
       user: auth.currentUser.displayName,
       message: message,
       timestamp: new Date().toISOString(),
     });
-    document.getElementById("message-input").value = ""; // Clear input field
+    document.getElementById("message-input").value = ""; // Clear input
   }
 });
 
-// Listen to new messages from Firebase (for real-time updates)
+// Listen for new messages
 const chatMessagesRef = db.ref("messages");
 chatMessagesRef.on("child_added", (snapshot) => {
   const messageData = snapshot.val();
@@ -37,7 +37,18 @@ chatMessagesRef.on("child_added", (snapshot) => {
   document.getElementById("chat-messages").appendChild(messageElement);
 });
 
-// Add Friend functionality (you can expand this later with a real database)
+// Add Friend functionality (Firebase Integration)
 document.getElementById("add-friend-btn").addEventListener("click", () => {
-  alert("Friend Request sent!");
+  const friendEmail = prompt("Enter the email of the person you want to add:");
+  if (friendEmail) {
+    const friendRef = db.ref("friends/" + auth.currentUser.uid).push();
+    friendRef.set({
+      friendEmail: friendEmail,
+      status: "pending",
+    }).then(() => {
+      alert("Friend request sent to " + friendEmail);
+    }).catch((error) => {
+      alert("Error sending friend request: " + error.message);
+    });
+  }
 });
