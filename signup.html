@@ -4,29 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Chat App</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/signup.css">
 </head>
 <body>
-  <h2>Create Account</h2>
-  <form id="signup-form">
-    <input type="text" id="username" placeholder="Username" required><br>
-    <input type="email" id="email" placeholder="Email" required><br>
-    <input type="password" id="password" placeholder="Password" required><br>
-    <input type="file" id="profile-pic" accept="image/*"><br>
-    <button type="submit">Sign Up</button>
-  </form>
-  <hr>
-  
-  <!-- Google Sign-Up Button -->
-  <button id="google-signup">Sign Up with Google</button>
-
-  <!-- GitHub Sign-Up Button -->
-  <button id="github-signup">Sign Up with GitHub</button>
-
-  <!-- Yahoo Sign-Up Button -->
-  <button id="yahoo-signup">Sign Up with Yahoo</button>
-
-  <p>Already have an account? <a href="login.html">Log In</a></p>
+  <div class="signup-container">
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="file" id="profile-pic" accept="image/*" />
+      <button type="submit">Sign Up</button>
+      <button type="button" id="google-signup">Sign Up with Google</button>
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
 
   <script type="module" src="js/signup.js"></script>
 </body>
