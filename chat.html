@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat - Chat App</title>
-  <link rel="stylesheet" href="css/chat.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
-  <div class="sidebar">
-    <button id="logout-btn">Logout</button>
-    <button id="add-friend-btn">Add Friend</button>
-    <button id="friend-list-btn">Friends List</button>
-  </div>
-
-  <div class="chat-window">
-    <div class="messages" id="messages">
-      <!-- Messages will appear here -->
+    <!-- Sidebar Navigation -->
+    <div id="sidebar">
+        <button id="logout-btn">Logout</button>
+        <button id="add-friend-btn">Add Friend</button>
+        <button id="friend-list-btn">Friends List</button>
+        <div id="friends-list"></div>
     </div>
-    <form id="message-form">
-      <textarea id="message-input" placeholder="Type your message..."></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </div>
 
-  <script type="module" src="js/chat.js"></script>
+    <!-- Chat Area -->
+    <div id="chat-container">
+        <div id="chat-messages">
+            <!-- Messages will be displayed here -->
+        </div>
+        <form id="send-message-form">
+            <input type="text" id="message-input" placeholder="Type a message..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html>
