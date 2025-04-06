@@ -7,26 +7,22 @@
   <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
-  <div class="chat-container">
-    <div class="sidebar">
-      <h3>Members</h3>
-      <ul id="friend-list">
-        <!-- Friend list will be populated dynamically -->
-      </ul>
-      <input type="text" id="add-friend" placeholder="Enter friend email">
-      <button id="add-friend-btn">Add Friend</button>
-    </div>
-
-    <div class="chat-window">
-      <h2>Welcome to the Chat!</h2>
-      <div id="messages">
-        <!-- Chat messages will appear here -->
-      </div>
-      <textarea id="message-input" placeholder="Type your message here..."></textarea>
-      <button id="send-message-btn">Send</button>
-    </div>
+  <div class="sidebar">
+    <button id="logout-btn">Logout</button>
+    <button id="add-friend-btn">Add Friend</button>
+    <button id="friend-list-btn">Friends List</button>
   </div>
 
-  <script src="js/chat.js"></script>
+  <div class="chat-window">
+    <div class="messages" id="messages">
+      <!-- Messages will appear here -->
+    </div>
+    <form id="message-form">
+      <textarea id="message-input" placeholder="Type your message..."></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script type="module" src="js/chat.js"></script>
 </body>
 </html>
