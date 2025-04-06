@@ -1,11 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat - Chat App</title>
+  <link rel="stylesheet" href="css/chat.css">
+</head>
 <body>
-  <h2>Chat Room</h2>
-  <div id="messages"></div>
-  <form id="message-form">
-    <input type="text" id="message-input" placeholder="Type message..." required />
-    <button type="submit">Send</button>
-  </form>
-  <button id="signout">Sign Out</button>
+  <div class="chat-container">
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>Chat App</h3>
+        <button id="logout">Logout</button>
+      </div>
+      <div class="sidebar-body">
+        <button id="add-friend-btn">Add Friend</button>
+        <button id="friends-list-btn">Friends List</button>
+      </div>
+    </div>
+
+    <!-- Chat Section -->
+    <div class="chat">
+      <div class="chat-header">
+        <h3>Chat Room</h3>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <!-- Messages will appear here -->
+      </div>
+      <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="send-message-btn">Send</button>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="js/chat.js"></script>
 </body>
+</html>
