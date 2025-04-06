@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC1K8GwY5X94pd66W-l75S0D-ShajUg2h8",
@@ -36,4 +36,11 @@ document.getElementById("google-login").addEventListener("click", () => {
     .catch(error => {
       alert("Google Login Error: " + error.message);
     });
+});
+
+// Check if the user is already authenticated when the page loads
+onAuthStateChanged(auth, user => {
+  if (user) {
+    window.location.href = "chat.html";  // Redirect to chat page if the user is logged in
+  }
 });
