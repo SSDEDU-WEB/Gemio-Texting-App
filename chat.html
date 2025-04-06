@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Chat</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
 <body>
-  <h2 id="userInfo"></h2>
-  <div id="chatWindow">Texting will go here...</div>
+  <h2>Chat Room</h2>
+  <div id="messages"></div>
+  <form id="message-form">
+    <input type="text" id="message-input" placeholder="Type message..." required />
+    <button type="submit">Send</button>
+  </form>
+  <button id="signout">Sign Out</button>
 
-  <script type="module">
-    import { auth } from "./js/firebase.js";
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        alert("You must be logged in.");
-        window.location.href = "login.html";
-      } else {
-        document.getElementById("userInfo").innerText = `Logged in as: ${user.displayName}`;
-      }
-    });
-  </script>
+  <script type="module" src="js/chat.js"></script>
 </body>
-</html>
