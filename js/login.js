@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC1K8GwY5X94pd66W-l75S0D-ShajUg2h8",
@@ -12,7 +12,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 document.getElementById("login-form").addEventListener("submit", e => {
   e.preventDefault();
@@ -28,8 +28,9 @@ document.getElementById("login-form").addEventListener("submit", e => {
     });
 });
 
+// Google Login
 document.getElementById("google-login").addEventListener("click", () => {
-  signInWithPopup(auth, provider)
+  signInWithPopup(auth, googleProvider)
     .then(() => {
       window.location.href = "chat.html";
     })
@@ -38,9 +39,12 @@ document.getElementById("google-login").addEventListener("click", () => {
     });
 });
 
-// Check if the user is already authenticated when the page loads
-onAuthStateChanged(auth, user => {
-  if (user) {
-    window.location.href = "chat.html";  // Redirect to chat page if the user is logged in
-  }
+// GitHub Login (Firebase custom OAuth or 3rd-party OAuth)
+document.getElementById("github-login").addEventListener("click", () => {
+  alert("GitHub Login feature not implemented. Use Google or Email login.");
+});
+
+// Yahoo Login (Firebase custom OAuth or 3rd-party OAuth)
+document.getElementById("yahoo-login").addEventListener("click", () => {
+  alert("Yahoo Login feature not implemented. Use Google or Email login.");
 });
