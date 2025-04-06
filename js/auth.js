@@ -1,48 +1,35 @@
-import { auth, database } from './firebase.js';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { ref, set } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+// js/auth.js
+import { auth, db } from "./firebase.js";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-const signupForm = document.getElementById('signupForm');
-if (signupForm) {
-  signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const username = document.getElementById('username').value;
+// Handle login button
+const loginBtn = document.getElementById("googleLogin");
+if (loginBtn) {
+  loginBtn.addEventListener("click", () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      await sendEmailVerification(user);
-      await set(ref(database, 'users/' + user.uid), {
-        username: username,
-        email: email
+        // Save user info to Realtime DB
+        fetch(`https://github-9d1dc-default-rtdb.firebaseio.com/users/${user.uid}.json`, {
+          method: "PUT",
+          body: JSON.stringify({
+            name: user.displayName,
+            email: user.email,
+            uid: user.uid
+          })
+        });
+
+        // Redirect to chat page
+        window.location.href = "chat.html";
+      })
+      .catch((error) => {
+        alert("Login failed: " + error.message);
       });
-      alert('Signed up! Please check your email for verification.');
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-}
-
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      if (user.emailVerified) {
-        alert('Login successful!');
-        // TODO: Redirect to dashboard or chat
-      } else {
-        alert('Please verify your email before logging in.');
-      }
-    } catch (error) {
-      alert(error.message);
-    }
   });
 }
