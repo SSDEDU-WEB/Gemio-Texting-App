@@ -50,3 +50,25 @@ document.getElementById("google-signup").addEventListener("click", () => {
       alert("Google Sign Up Error: " + error.message);
     });
 });
+
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js";
+
+// Inside createUserWithEmailAndPassword success
+const file = document.getElementById("profile-pic").files[0];
+const storage = getStorage();
+const storageRef = ref(storage, 'profile_pics/' + auth.currentUser.uid);
+
+if (file) {
+  uploadBytes(storageRef, file).then(() => {
+    getDownloadURL(storageRef).then(url => {
+      updateProfile(auth.currentUser, {
+        displayName: username,
+        photoURL: url
+      });
+      window.location.href = "chat.html";
+    });
+  });
+} else {
+  updateProfile(auth.currentUser, { displayName: username });
+  window.location.href = "chat.html";
+}
