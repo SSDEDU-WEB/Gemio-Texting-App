@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 document.getElementById("signup-form").addEventListener("submit", e => {
   e.preventDefault();
@@ -45,18 +45,11 @@ document.getElementById("signup-form").addEventListener("submit", e => {
 });
 
 document.getElementById("google-signup").addEventListener("click", () => {
-  signInWithPopup(auth, provider)
+  signInWithPopup(auth, googleProvider)
     .then(result => {
       window.location.href = "chat.html";
     })
     .catch(error => {
       alert("Google Signup Error: " + error.message);
     });
-});
-
-// Check if the user is already authenticated when the page loads
-onAuthStateChanged(auth, user => {
-  if (user) {
-    window.location.href = "chat.html";  // Redirect to chat page if the user is logged in
-  }
 });
