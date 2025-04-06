@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, OAuthProvider } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -14,6 +14,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new OAuthProvider('github.com');
+const yahooProvider = new OAuthProvider('yahoo.com');
 
 document.getElementById("signup-form").addEventListener("submit", e => {
   e.preventDefault();
@@ -44,6 +46,7 @@ document.getElementById("signup-form").addEventListener("submit", e => {
     });
 });
 
+// Google Signup
 document.getElementById("google-signup").addEventListener("click", () => {
   signInWithPopup(auth, googleProvider)
     .then(result => {
@@ -51,5 +54,27 @@ document.getElementById("google-signup").addEventListener("click", () => {
     })
     .catch(error => {
       alert("Google Signup Error: " + error.message);
+    });
+});
+
+// GitHub Signup
+document.getElementById("github-signup").addEventListener("click", () => {
+  signInWithPopup(auth, githubProvider)
+    .then(result => {
+      window.location.href = "chat.html";
+    })
+    .catch(error => {
+      alert("GitHub Signup Error: " + error.message);
+    });
+});
+
+// Yahoo Signup
+document.getElementById("yahoo-signup").addEventListener("click", () => {
+  signInWithPopup(auth, yahooProvider)
+    .then(result => {
+      window.location.href = "chat.html";
+    })
+    .catch(error => {
+      alert("Yahoo Signup Error: " + error.message);
     });
 });
