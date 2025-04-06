@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link rel="stylesheet" href="css/style.css"/>
+  <title>Log In</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <h2>Login</h2>
-  <form id="loginForm">
-    <input type="email" id="loginEmail" placeholder="Email" required /><br/>
-    <input type="password" id="loginPassword" placeholder="Password" required /><br/>
-    <button type="submit">Login</button>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <button type="submit">Log In</button>
   </form>
-  <script type="module" src="js/auth.js"></script>
+
+  <hr>
+  <button id="google-login">Login with Google</button>
+  <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+
+  <script type="module" src="js/login.js"></script>
 </body>
 </html>
