@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sign Up</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Chat App</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -10,13 +12,12 @@
     <input type="text" id="username" placeholder="Username" required><br>
     <input type="email" id="email" placeholder="Email" required><br>
     <input type="password" id="password" placeholder="Password" required><br>
+    <input type="file" id="profile-pic" accept="image/*"><br>
     <button type="submit">Sign Up</button>
   </form>
-
   <hr>
   <button id="google-signup">Sign Up with Google</button>
   <p>Already have an account? <a href="login.html">Log In</a></p>
-
   <script type="module" src="js/signup.js"></script>
 </body>
 </html>
